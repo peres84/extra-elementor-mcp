@@ -89,6 +89,24 @@
 				JSON.stringify( claudeCodeConfig, null, 4 )
 			);
 
+			// Claude Code CLI
+			function buildClaudeCodeCli() {
+				var scopeEl = document.getElementById( 'extra-mcp-cli-scope' );
+				var scope = scopeEl ? scopeEl.value : 'project';
+				var cmd = 'claude mcp add --transport http --scope ' + scope + ' extra-elementor-mcp ' + endpoint + ' --header "Authorization: ' + headerValue + '"';
+				setConfigBlock(
+					'extra-mcp-claude-code-cli-code',
+					'claude-code-cli',
+					cmd
+				);
+			}
+			buildClaudeCodeCli();
+
+			var scopeSelect = document.getElementById( 'extra-mcp-cli-scope' );
+			if ( scopeSelect ) {
+				scopeSelect.addEventListener( 'change', buildClaudeCodeCli );
+			}
+
 			// Claude Desktop
 			setConfigBlock(
 				'extra-mcp-claude-desktop-http-code',

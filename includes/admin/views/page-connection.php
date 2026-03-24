@@ -120,7 +120,7 @@ $extra_mcp_has_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 				<?php esc_html_e( 'Paste the configuration into the appropriate file for your AI client.', 'extra-elementor-mcp' ); ?>
 			</p>
 
-			<!-- Claude Code -->
+			<!-- Claude Code (.mcp.json) -->
 			<div class="extra-mcp-config-card">
 				<div class="extra-mcp-config-card-header">
 					<span class="extra-mcp-config-card-title"><?php esc_html_e( 'Claude Code', 'extra-elementor-mcp' ); ?> <span style="font-weight: 400; color: #9ca3af;">&mdash; .mcp.json</span></span>
@@ -128,6 +128,26 @@ $extra_mcp_has_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 				</div>
 				<pre><code id="extra-mcp-claude-code-http-code"></code></pre>
 				<textarea id="claude-code-http" class="extra-mcp-copy-source"></textarea>
+			</div>
+
+			<!-- Claude Code (CLI) -->
+			<div class="extra-mcp-config-card">
+				<div class="extra-mcp-config-card-header">
+					<span class="extra-mcp-config-card-title"><?php esc_html_e( 'Claude Code', 'extra-elementor-mcp' ); ?> <span style="font-weight: 400; color: #9ca3af;">&mdash; CLI</span></span>
+					<span class="extra-mcp-config-card-actions">
+						<label for="extra-mcp-cli-scope" style="margin-right: 6px; font-size: 13px; color: #6b7280;"><?php esc_html_e( 'Scope:', 'extra-elementor-mcp' ); ?></label>
+						<select id="extra-mcp-cli-scope" style="min-width: 100px; margin-right: 8px;">
+							<option value="project"><?php esc_html_e( 'Project', 'extra-elementor-mcp' ); ?></option>
+							<option value="user"><?php esc_html_e( 'User (global)', 'extra-elementor-mcp' ); ?></option>
+						</select>
+						<button type="button" class="button extra-mcp-copy-btn" data-target="claude-code-cli"><?php esc_html_e( 'Copy', 'extra-elementor-mcp' ); ?></button>
+					</span>
+				</div>
+				<pre><code id="extra-mcp-claude-code-cli-code"></code></pre>
+				<textarea id="claude-code-cli" class="extra-mcp-copy-source"></textarea>
+				<p class="description" style="margin-top: 6px;">
+					<?php esc_html_e( 'Project: saves to .mcp.json in the current directory. User: saves globally for all projects.', 'extra-elementor-mcp' ); ?>
+				</p>
 			</div>
 
 			<!-- Claude Desktop -->

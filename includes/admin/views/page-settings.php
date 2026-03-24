@@ -16,7 +16,7 @@ $mcp_endpoint = home_url( '/wp-json/mcp/extra-elementor-mcp-server' );
 	<h1><?php esc_html_e( 'Extra MCP Tools for Elementor', 'extra-elementor-mcp' ); ?></h1>
 
 	<h2><?php esc_html_e( 'Connection Info', 'extra-elementor-mcp' ); ?></h2>
-	<table class="form-table">
+	<table class="form-table" role="presentation">
 		<tr>
 			<th scope="row"><?php esc_html_e( 'MCP Server Endpoint', 'extra-elementor-mcp' ); ?></th>
 			<td>
@@ -29,7 +29,7 @@ $mcp_endpoint = home_url( '/wp-json/mcp/extra-elementor-mcp-server' );
 	</table>
 
 	<h2><?php esc_html_e( 'Dependency Status', 'extra-elementor-mcp' ); ?></h2>
-	<table class="form-table">
+	<table class="form-table" role="presentation">
 		<tr>
 			<th scope="row"><?php esc_html_e( 'WordPress MCP Adapter', 'extra-elementor-mcp' ); ?></th>
 			<td>
@@ -41,10 +41,20 @@ $mcp_endpoint = home_url( '/wp-json/mcp/extra-elementor-mcp-server' );
 			</td>
 		</tr>
 		<tr>
+			<th scope="row"><?php esc_html_e( 'WordPress Abilities API', 'extra-elementor-mcp' ); ?></th>
+			<td>
+				<?php if ( function_exists( 'wp_register_ability' ) ) : ?>
+					<span style="color:green;">&#10003; <?php esc_html_e( 'Active', 'extra-elementor-mcp' ); ?></span>
+				<?php else : ?>
+					<span style="color:red;">&#10007; <?php esc_html_e( 'Not detected — requires WordPress 6.9+', 'extra-elementor-mcp' ); ?></span>
+				<?php endif; ?>
+			</td>
+		</tr>
+		<tr>
 			<th scope="row"><?php esc_html_e( 'Yoast SEO', 'extra-elementor-mcp' ); ?></th>
 			<td>
 				<?php if ( defined( 'WPSEO_VERSION' ) ) : ?>
-					<span style="color:green;">&#10003; <?php echo esc_html( sprintf( __( 'Active (v%s) — SEO tools enabled', 'extra-elementor-mcp' ), WPSEO_VERSION ) ); ?></span>
+					<span style="color:green;">&#10003; <?php echo esc_html( sprintf( /* translators: %s: Yoast SEO version number */ __( 'Active (v%s) — SEO tools enabled', 'extra-elementor-mcp' ), WPSEO_VERSION ) ); ?></span>
 				<?php else : ?>
 					<span style="color:#888;">&#8212; <?php esc_html_e( 'Not detected — SEO tools disabled', 'extra-elementor-mcp' ); ?></span>
 				<?php endif; ?>
@@ -62,20 +72,11 @@ $mcp_endpoint = home_url( '/wp-json/mcp/extra-elementor-mcp-server' );
 		</tr>
 	</table>
 
-	<h2><?php esc_html_e( 'Available Tools', 'extra-elementor-mcp' ); ?></h2>
-	<p><?php esc_html_e( 'The following tool groups are registered:', 'extra-elementor-mcp' ); ?></p>
-	<ul>
-		<li><?php esc_html_e( 'Page Status: publish-page, get-page-info, update-page-meta', 'extra-elementor-mcp' ); ?></li>
-		<li><?php esc_html_e( 'Navigation Menus: list-menus, get-menu, update-menu, assign-menu-location', 'extra-elementor-mcp' ); ?></li>
-		<li><?php esc_html_e( 'Site Settings: get-site-info, update-site-settings, get-reading-settings', 'extra-elementor-mcp' ); ?></li>
-		<li><?php esc_html_e( 'Media Library: list-media, upload-media, update-media-meta', 'extra-elementor-mcp' ); ?></li>
-		<li><?php esc_html_e( 'Taxonomies: list-categories, create-category, list-tags, create-tag', 'extra-elementor-mcp' ); ?></li>
-		<li><?php esc_html_e( 'Revisions: list-revisions, restore-revision', 'extra-elementor-mcp' ); ?></li>
-		<?php if ( defined( 'WPSEO_VERSION' ) ) : ?>
-		<li><?php esc_html_e( 'Yoast SEO: get-seo, update-seo, get-seo-analysis', 'extra-elementor-mcp' ); ?></li>
-		<?php endif; ?>
-		<?php if ( class_exists( 'ACF' ) ) : ?>
-		<li><?php esc_html_e( 'ACF: list-acf-field-groups, get-acf-fields, update-acf-fields', 'extra-elementor-mcp' ); ?></li>
-		<?php endif; ?>
-	</ul>
+	<form action="options.php" method="post">
+		<?php
+		settings_fields( Extra_Elementor_MCP_Admin::SETTINGS_GROUP );
+		do_settings_sections( Extra_Elementor_MCP_Admin::PAGE_SLUG );
+		submit_button( __( 'Save Settings', 'extra-elementor-mcp' ) );
+		?>
+	</form>
 </div>

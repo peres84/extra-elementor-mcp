@@ -1,0 +1,421 @@
+/**
+ * Extra MCP Tools for Elementor — Admin Settings Styles
+ *
+ * @package Extra_Elementor_MCP
+ * @since   1.0.0
+ */
+
+/* =========================================================================
+ * CSS Custom Properties
+ * ========================================================================= */
+
+.extra-mcp-admin {
+	--mcp-primary: #6366f1;
+	--mcp-primary-hover: #4f46e5;
+	--mcp-primary-light: #eef2ff;
+	--mcp-success: #10b981;
+	--mcp-success-light: #ecfdf5;
+	--mcp-danger: #ef4444;
+	--mcp-danger-light: #fef2f2;
+	--mcp-gray-50: #f9fafb;
+	--mcp-gray-100: #f3f4f6;
+	--mcp-gray-200: #e5e7eb;
+	--mcp-gray-300: #d1d5db;
+	--mcp-gray-400: #9ca3af;
+	--mcp-gray-500: #6b7280;
+	--mcp-gray-600: #4b5563;
+	--mcp-gray-700: #374151;
+	--mcp-gray-800: #1f2937;
+	--mcp-gray-900: #111827;
+	--mcp-white: #ffffff;
+	--mcp-radius: 10px;
+	--mcp-radius-sm: 6px;
+	--mcp-radius-lg: 14px;
+	--mcp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--mcp-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+	--mcp-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================================
+ * Page Layout
+ * ========================================================================= */
+
+.extra-mcp-admin {
+	max-width: 1280px;
+	margin-right: 20px;
+}
+
+/* =========================================================================
+ * Tab Navigation
+ * ========================================================================= */
+
+.extra-mcp-tabs {
+	display: flex;
+	gap: 0;
+	border-bottom: 1px solid var(--mcp-gray-200);
+	margin: 20px 0 0;
+	background: var(--mcp-white);
+	padding: 0 24px;
+	border-radius: var(--mcp-radius-lg) var(--mcp-radius-lg) 0 0;
+	border: 1px solid var(--mcp-gray-200);
+	border-bottom: none;
+}
+
+.extra-mcp-tab {
+	display: inline-block;
+	padding: 12px 20px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--mcp-gray-500);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+	transition: all var(--mcp-transition);
+}
+
+.extra-mcp-tab:hover {
+	color: var(--mcp-gray-700);
+}
+
+.extra-mcp-tab.is-active {
+	color: var(--mcp-primary);
+	border-bottom-color: var(--mcp-primary);
+	font-weight: 600;
+}
+
+.extra-mcp-tab-content {
+	background: var(--mcp-white);
+	border: 1px solid var(--mcp-gray-200);
+	border-top: none;
+	border-radius: 0 0 var(--mcp-radius-lg) var(--mcp-radius-lg);
+	padding: 24px;
+}
+
+/* =========================================================================
+ * Connection Tab
+ * ========================================================================= */
+
+.extra-mcp-connection {
+	max-width: 860px;
+}
+
+.extra-mcp-section {
+	margin-bottom: 32px;
+	padding-bottom: 24px;
+	border-bottom: 1px solid var(--mcp-gray-200);
+}
+
+.extra-mcp-section:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.extra-mcp-section > h2 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--mcp-gray-800);
+	margin: 0 0 8px;
+}
+
+.extra-mcp-section > p.description {
+	color: var(--mcp-gray-500);
+	font-size: 13px;
+	margin: 0 0 16px;
+}
+
+.extra-mcp-section h3 {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--mcp-gray-700);
+	margin: 20px 0 8px;
+}
+
+/* Status Cards */
+.extra-mcp-status-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.extra-mcp-status-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 16px;
+	background: var(--mcp-gray-50);
+	border: 1px solid var(--mcp-gray-200);
+	border-radius: var(--mcp-radius);
+}
+
+.extra-mcp-status-card-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	flex-shrink: 0;
+}
+
+.extra-mcp-status-card-icon--ok {
+	background: var(--mcp-success-light);
+	color: var(--mcp-success);
+}
+
+.extra-mcp-status-card-icon--warn {
+	background: var(--mcp-danger-light);
+	color: var(--mcp-danger);
+}
+
+.extra-mcp-status-card-icon svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.extra-mcp-status-card-info {
+	min-width: 0;
+}
+
+.extra-mcp-status-card-label {
+	display: block;
+	font-size: 12px;
+	color: var(--mcp-gray-500);
+}
+
+.extra-mcp-status-card-value {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--mcp-gray-800);
+}
+
+/* Endpoint URL */
+.extra-mcp-endpoint {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	background: var(--mcp-gray-50);
+	border: 1px solid var(--mcp-gray-200);
+	border-radius: var(--mcp-radius-sm);
+	margin: 12px 0 0;
+}
+
+.extra-mcp-endpoint code {
+	font-size: 12px;
+	color: var(--mcp-gray-700);
+	background: none;
+	padding: 0;
+	word-break: break-all;
+	flex: 1;
+}
+
+.extra-mcp-endpoint .extra-mcp-copy-btn {
+	position: static;
+	background: var(--mcp-white) !important;
+	border: 1px solid var(--mcp-gray-300) !important;
+	color: var(--mcp-gray-600) !important;
+	font-size: 11px !important;
+	padding: 3px 10px !important;
+	min-height: auto !important;
+	border-radius: 4px !important;
+	flex-shrink: 0;
+}
+
+.extra-mcp-endpoint .extra-mcp-copy-btn:hover {
+	background: var(--mcp-gray-100) !important;
+	border-color: var(--mcp-gray-400) !important;
+}
+
+/* Credential Form */
+.extra-mcp-cred-form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	max-width: 500px;
+}
+
+.extra-mcp-cred-field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.extra-mcp-cred-field label {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--mcp-gray-700);
+}
+
+.extra-mcp-cred-field input {
+	padding: 8px 12px;
+	border: 1px solid var(--mcp-gray-300);
+	border-radius: var(--mcp-radius-sm);
+	font-size: 13px;
+	transition: border-color var(--mcp-transition), box-shadow var(--mcp-transition);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.extra-mcp-cred-field input:focus {
+	border-color: var(--mcp-primary);
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+	outline: none;
+}
+
+.extra-mcp-cred-field .description {
+	font-size: 12px;
+	color: var(--mcp-gray-400);
+	margin: 0;
+}
+
+.extra-mcp-generate-btn {
+	align-self: flex-start;
+	background: var(--mcp-primary) !important;
+	border-color: var(--mcp-primary) !important;
+	color: var(--mcp-white) !important;
+	padding: 8px 20px !important;
+	border-radius: var(--mcp-radius-sm) !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	transition: all var(--mcp-transition) !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+	height: auto !important;
+	line-height: 1.5 !important;
+}
+
+.extra-mcp-generate-btn:hover {
+	background: var(--mcp-primary-hover) !important;
+	border-color: var(--mcp-primary-hover) !important;
+}
+
+/* Auth result */
+.extra-mcp-auth-result {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	background: var(--mcp-success-light);
+	border: 1px solid #a7f3d0;
+	border-radius: var(--mcp-radius-sm);
+	margin-top: 4px;
+}
+
+.extra-mcp-auth-result code {
+	font-size: 12px;
+	color: var(--mcp-gray-700);
+	background: none;
+	word-break: break-all;
+	flex: 1;
+}
+
+.extra-mcp-auth-result .extra-mcp-copy-btn {
+	position: static;
+	background: var(--mcp-white) !important;
+	border: 1px solid #a7f3d0 !important;
+	color: #059669 !important;
+	font-size: 11px !important;
+	padding: 3px 10px !important;
+	min-height: auto !important;
+	border-radius: 4px !important;
+	flex-shrink: 0;
+}
+
+/* Config Code Blocks */
+.extra-mcp-config-card {
+	margin: 12px 0 20px;
+	border: 1px solid var(--mcp-gray-200);
+	border-radius: var(--mcp-radius);
+	overflow: hidden;
+}
+
+.extra-mcp-config-card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 14px;
+	background: var(--mcp-gray-50);
+	border-bottom: 1px solid var(--mcp-gray-200);
+}
+
+.extra-mcp-config-card-title {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--mcp-gray-700);
+}
+
+.extra-mcp-config-card-header .extra-mcp-copy-btn {
+	position: static;
+	background: var(--mcp-white) !important;
+	border: 1px solid var(--mcp-gray-300) !important;
+	color: var(--mcp-gray-600) !important;
+	font-size: 11px !important;
+	padding: 3px 12px !important;
+	min-height: auto !important;
+	border-radius: 4px !important;
+}
+
+.extra-mcp-config-card-header .extra-mcp-copy-btn:hover {
+	background: var(--mcp-gray-100) !important;
+	border-color: var(--mcp-gray-400) !important;
+}
+
+.extra-mcp-config-card pre {
+	margin: 0;
+	padding: 14px 16px;
+	background: var(--mcp-gray-900);
+	color: #e2e8f0;
+	font-size: 12px;
+	line-height: 1.6;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.extra-mcp-config-card code {
+	background: none;
+	color: inherit;
+	font-size: inherit;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Copy button — generic */
+.extra-mcp-copy-btn {
+	font-size: 11px !important;
+	padding: 3px 10px !important;
+	min-height: 24px !important;
+	cursor: pointer;
+	transition: all var(--mcp-transition) !important;
+}
+
+/* Hidden textarea for copy source */
+.extra-mcp-copy-source {
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+/* =========================================================================
+ * Responsive
+ * ========================================================================= */
+
+@media (max-width: 782px) {
+	.extra-mcp-status-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.extra-mcp-tabs {
+		padding: 0 12px;
+	}
+
+	.extra-mcp-tab-content {
+		padding: 16px;
+	}
+}

@@ -45,11 +45,29 @@ Add this to your `.mcp.json` alongside `elementor-mcp` for a complete AI website
 
 == Installation ==
 
+= From a zip file =
+
 1. Ensure WordPress 6.9 or later is installed (includes the MCP Adapter and Abilities API).
-2. Upload the `extra-elementor-mcp` folder to `/wp-content/plugins/`.
+2. Go to **Plugins → Add New → Upload Plugin** and upload `extra-elementor-mcp.zip`.
 3. Activate the plugin through the **Plugins** menu in WordPress.
 4. Go to **Settings → Extra MCP Tools** to see the MCP endpoint URL and dependency status.
 5. Add the endpoint to your `.mcp.json` configuration.
+
+= Building the zip from source =
+
+The repository includes build scripts that package only the plugin files (no docs, tests, or dev files).
+
+**Windows (PowerShell):**
+
+`powershell -File build-zip.ps1`
+
+**Git Bash / macOS / Linux:**
+
+`bash build-zip.sh`
+
+**Note:** On Windows, `bash build-zip.sh` may fail if run through WSL without a Linux distro installed. Use PowerShell or Git Bash instead.
+
+The zip file is created one level above the project folder (e.g., `../extra-elementor-mcp.zip`).
 
 == Frequently Asked Questions ==
 

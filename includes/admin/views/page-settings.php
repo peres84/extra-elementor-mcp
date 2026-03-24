@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings page view.
+ * Settings page view with tabbed interface.
  *
  * @package Extra_Elementor_MCP
  * @since   1.0.0
@@ -10,73 +10,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$mcp_endpoint = home_url( '/wp-json/mcp/extra-elementor-mcp-server' );
+$extra_mcp_current_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'connection'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$extra_mcp_tabs        = array(
+	'connection' => __( 'Connection', 'extra-elementor-mcp' ),
+	'tools'      => __( 'Tools', 'extra-elementor-mcp' ),
+);
 ?>
-<div class="wrap">
+<div class="wrap extra-mcp-admin">
 	<h1><?php esc_html_e( 'Extra MCP Tools for Elementor', 'extra-elementor-mcp' ); ?></h1>
 
-	<h2><?php esc_html_e( 'Connection Info', 'extra-elementor-mcp' ); ?></h2>
-	<table class="form-table" role="presentation">
-		<tr>
-			<th scope="row"><?php esc_html_e( 'MCP Server Endpoint', 'extra-elementor-mcp' ); ?></th>
-			<td>
-				<code><?php echo esc_url( $mcp_endpoint ); ?></code>
-				<p class="description">
-					<?php esc_html_e( 'Use this URL in your .mcp.json to connect AI tools to this server.', 'extra-elementor-mcp' ); ?>
-				</p>
-			</td>
-		</tr>
-	</table>
+	<nav class="extra-mcp-tabs">
+		<?php foreach ( $extra_mcp_tabs as $extra_mcp_tab_key => $extra_mcp_tab_label ) : ?>
+			<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . Extra_Elementor_MCP_Admin::PAGE_SLUG . '&tab=' . $extra_mcp_tab_key ) ); ?>"
+			   class="extra-mcp-tab <?php echo $extra_mcp_current_tab === $extra_mcp_tab_key ? 'is-active' : ''; ?>">
+				<?php echo esc_html( $extra_mcp_tab_label ); ?>
+			</a>
+		<?php endforeach; ?>
+	</nav>
 
-	<h2><?php esc_html_e( 'Dependency Status', 'extra-elementor-mcp' ); ?></h2>
-	<table class="form-table" role="presentation">
-		<tr>
-			<th scope="row"><?php esc_html_e( 'WordPress MCP Adapter', 'extra-elementor-mcp' ); ?></th>
-			<td>
-				<?php if ( class_exists( '\WP\MCP\Core\McpAdapter' ) ) : ?>
-					<span style="color:green;">&#10003; <?php esc_html_e( 'Active', 'extra-elementor-mcp' ); ?></span>
-				<?php else : ?>
-					<span style="color:red;">&#10007; <?php esc_html_e( 'Not detected (required)', 'extra-elementor-mcp' ); ?></span>
-				<?php endif; ?>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><?php esc_html_e( 'WordPress Abilities API', 'extra-elementor-mcp' ); ?></th>
-			<td>
-				<?php if ( function_exists( 'wp_register_ability' ) ) : ?>
-					<span style="color:green;">&#10003; <?php esc_html_e( 'Active', 'extra-elementor-mcp' ); ?></span>
-				<?php else : ?>
-					<span style="color:red;">&#10007; <?php esc_html_e( 'Not detected — requires WordPress 6.9+', 'extra-elementor-mcp' ); ?></span>
-				<?php endif; ?>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><?php esc_html_e( 'Yoast SEO', 'extra-elementor-mcp' ); ?></th>
-			<td>
-				<?php if ( defined( 'WPSEO_VERSION' ) ) : ?>
-					<span style="color:green;">&#10003; <?php echo esc_html( sprintf( /* translators: %s: Yoast SEO version number */ __( 'Active (v%s) — SEO tools enabled', 'extra-elementor-mcp' ), WPSEO_VERSION ) ); ?></span>
-				<?php else : ?>
-					<span style="color:#888;">&#8212; <?php esc_html_e( 'Not detected — SEO tools disabled', 'extra-elementor-mcp' ); ?></span>
-				<?php endif; ?>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><?php esc_html_e( 'Advanced Custom Fields (ACF)', 'extra-elementor-mcp' ); ?></th>
-			<td>
-				<?php if ( class_exists( 'ACF' ) ) : ?>
-					<span style="color:green;">&#10003; <?php esc_html_e( 'Active — ACF tools enabled', 'extra-elementor-mcp' ); ?></span>
-				<?php else : ?>
-					<span style="color:#888;">&#8212; <?php esc_html_e( 'Not detected — ACF tools disabled', 'extra-elementor-mcp' ); ?></span>
-				<?php endif; ?>
-			</td>
-		</tr>
-	</table>
-
-	<form action="options.php" method="post">
-		<?php
-		settings_fields( Extra_Elementor_MCP_Admin::SETTINGS_GROUP );
-		do_settings_sections( Extra_Elementor_MCP_Admin::PAGE_SLUG );
-		submit_button( __( 'Save Settings', 'extra-elementor-mcp' ) );
-		?>
-	</form>
+	<div class="extra-mcp-tab-content">
+		<?php if ( 'connection' === $extra_mcp_current_tab ) : ?>
+			<?php require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/admin/views/page-connection.php'; ?>
+		<?php elseif ( 'tools' === $extra_mcp_current_tab ) : ?>
+			<?php require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/admin/views/page-tools.php'; ?>
+		<?php endif; ?>
+	</div>
 </div>

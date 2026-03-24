@@ -46,6 +46,7 @@ class Extra_Elementor_MCP_Admin {
 	public function init(): void {
 		add_action( 'admin_menu', array( $this, 'add_menu_page' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 	}
 
 	/**
@@ -264,6 +265,43 @@ class Extra_Elementor_MCP_Admin {
 		}
 
 		require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/admin/views/page-settings.php';
+	}
+
+	/**
+	 * Enqueues admin CSS and JS on the plugin settings page only.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $hook_suffix The current admin page hook suffix.
+	 */
+	public function enqueue_assets( string $hook_suffix ): void {
+		if ( 'settings_page_' . self::PAGE_SLUG !== $hook_suffix ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'extra-elementor-mcp-admin',
+			EXTRA_ELEMENTOR_MCP_URL . 'assets/css/admin.css',
+			array(),
+			EXTRA_ELEMENTOR_MCP_VERSION
+		);
+
+		wp_enqueue_script(
+			'extra-elementor-mcp-admin',
+			EXTRA_ELEMENTOR_MCP_URL . 'assets/js/admin.js',
+			array(),
+			EXTRA_ELEMENTOR_MCP_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'extra-elementor-mcp-admin',
+			'extraMcpAdmin',
+			array(
+				'mcpEndpoint' => rest_url( 'mcp/extra-elementor-mcp-server' ),
+				'copied'      => __( 'Copied!', 'extra-elementor-mcp' ),
+			)
+		);
 	}
 
 	/**

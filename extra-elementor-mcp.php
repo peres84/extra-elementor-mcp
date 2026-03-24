@@ -162,14 +162,15 @@ function extra_elementor_mcp_init(): void {
 	require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/abilities/class-seo-abilities.php';
 	require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/abilities/class-acf-abilities.php';
 
+	// Admin class is loaded unconditionally so its constants and static methods
+	// are available to the ability registrar on both admin and front-end requests.
+	// Hooks are registered inside init(), which the plugin singleton calls only
+	// when is_admin() is true.
+	require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/admin/class-admin.php';
+
 	// Load core classes.
 	require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/class-ability-registrar.php';
 	require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/class-plugin.php';
-
-	// Admin settings page.
-	if ( is_admin() ) {
-		require_once EXTRA_ELEMENTOR_MCP_DIR . 'includes/admin/class-admin.php';
-	}
 
 	// Boot the plugin.
 	Extra_Elementor_MCP_Plugin::instance();

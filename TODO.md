@@ -64,11 +64,11 @@
 - [x] Implement `update-acf-fields` tool
 
 ## Phase 4 — Admin UI & Polish
-- [ ] Create `includes/admin/class-admin.php` settings page
-- [ ] Create `includes/admin/views/page-settings.php` view
-- [ ] Add tool group toggles (enable/disable per group)
-- [ ] Add dependency status panel (ACF, Yoast detected?)
-- [ ] Add connection info display (MCP endpoint URL)
+- [x] Create `includes/admin/class-admin.php` settings page
+- [x] Create `includes/admin/views/page-settings.php` view
+- [x] Add tool group toggles (enable/disable per group)
+- [x] Add dependency status panel (ACF, Yoast detected?)
+- [x] Add connection info display (MCP endpoint URL)
 
 ## Phase 5 — Testing
 - [ ] Set up PHPUnit with WP_UnitTestCase

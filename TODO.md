@@ -71,7 +71,7 @@
 - [x] Add connection info display (MCP endpoint URL)
 
 ## Phase 5 — Testing
-- [ ] Set up PHPUnit with WP_UnitTestCase
-- [ ] Unit tests for each ability class
-- [ ] Integration tests for tool registration + MCP server creation
-- [ ] Compatibility test with elementor-mcp active simultaneously
+- [x] Set up PHPUnit with WP_UnitTestCase
+- [x] Unit tests for each ability class
+- [x] Integration tests for tool registration + MCP server creation
+- [x] Compatibility test with elementor-mcp active simultaneously

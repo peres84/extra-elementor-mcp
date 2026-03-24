@@ -120,3 +120,5 @@ Contributions are welcome. This repository is specification-first, so changes sh
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
+
+<!-- push test: verified -->

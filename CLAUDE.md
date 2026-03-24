@@ -31,6 +31,32 @@ Implementation progress is tracked in `TODO.md`. When working on tasks:
 - Commit after completing each logical group (e.g., all Page Status tools)
 - Update TODO.md in the same commit
 
+## Git Workflow (Remote Agents)
+
+Remote agents (scheduled triggers) MUST follow this git workflow:
+
+1. **Pull first** — `git pull --rebase origin main` before starting any work
+2. **Do the work** — implement the task group
+3. **Commit** — commit all changes with a descriptive message
+4. **Pull again** — `git pull --rebase origin main` to catch any changes pushed while working
+5. **Resolve conflicts** — if rebase conflicts occur, resolve them cleanly
+6. **Push** — `git push origin main`
+7. **If push fails** — pull rebase again and retry. If unresolvable, document the issue in `KNOWN-ISSUES.md`
+
+## Changelog
+
+All changes must be logged in `CHANGELOG.md` using [Keep a Changelog](https://keepachangelog.com/) format. When committing work:
+- Add entries under `[Unreleased]` with categories: Added, Changed, Fixed, Removed
+- Move entries to a versioned section when releasing
+
+## Known Issues
+
+Unresolved problems (failed pushes, merge conflicts, bugs found during self-review) must be documented in `KNOWN-ISSUES.md` with:
+- Date discovered
+- Description of the issue
+- Steps to reproduce (if applicable)
+- Workaround (if any)
+
 ## File Structure
 
 ```
@@ -55,6 +81,8 @@ extra-elementor-mcp/
 │       ├── class-admin.php
 │       └── views/
 │           └── page-settings.php
+├── CHANGELOG.md                           # Keep a Changelog format
+├── KNOWN-ISSUES.md                        # Unresolved issues tracker
 ├── docs/
 ├── samples/                               # Reference repos (gitignored)
 └── readme.txt
